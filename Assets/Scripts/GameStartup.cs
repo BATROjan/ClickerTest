@@ -24,7 +24,7 @@ namespace DefaultNamespace
             _systems.ConvertScene();
         
             _systems.Init();
-            CreatSpawn(prefab);
+            CreatSpawn(prefab, ParTransform);
         }
 
         private void AddSystems()
@@ -46,12 +46,14 @@ namespace DefaultNamespace
             _systems.Run();
         }
 
-        private void CreatSpawn(GameObject prefab)
+        private void CreatSpawn(GameObject prefab, Transform transform)
         {
-            var entity = _world.NewEntity();
+           var entity = _world.NewEntity();
+         
             entity.Get<BusinessSpawnComponent>() = new BusinessSpawnComponent
             {
-                Prefab = prefab
+                Prefab = prefab,
+                ParentTransform = transform
             };
         }
 
