@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a09d66a5374287b7b3e866abea276d, type: 3}
+  m_Name: IncomeConfig
+  m_EditorClassIdentifier: 
+  buisnessModels:
+  - Name: "\u0411\u0438\u0437\u043D\u0435\u0441 1 "
+    LvL: 1
+    HasBuy: 1
+    IncomeDelay: 3
+    BaseCost: 3
+    BaseIncome: 3
+    FistUpgrade:
+      Cost: 50
+      IncomeMultiplier: 50
+    SecondUpgrade:
+      Cost: 400
+      IncomeMultiplier: 100
+  - Name: "\u0411\u0438\u0437\u043D\u0435\u0441 2"
+    LvL: 0
+    HasBuy: 0
+    IncomeDelay: 6
+    BaseCost: 40
+    BaseIncome: 40
+    FistUpgrade:
+      Cost: 1200
+      IncomeMultiplier: 100
+    SecondUpgrade:
+      Cost: 4000
+      IncomeMultiplier: 200
+  - Name: "\u0411\u0438\u0437\u043D\u0435\u0441 3"
+    LvL: 0
+    HasBuy: 0
+    IncomeDelay: 10
+    BaseCost: 200
+    BaseIncome: 200
+    FistUpgrade:
+      Cost: 6000
+      IncomeMultiplier: 100
+    SecondUpgrade:
+      Cost: 20000
+      IncomeMultiplier: 150
+  - Name: "\u0411\u0438\u0437\u043D\u0435\u0441 4"
+    LvL: 0
+    HasBuy: 0
+    IncomeDelay: 17
+    BaseCost: 1000
+    BaseIncome: 1000
+    FistUpgrade:
+      Cost: 15000
+      IncomeMultiplier: 100
+    SecondUpgrade:
+      Cost: 50000
+      IncomeMultiplier: 200
+  - Name: "\u0411\u0438\u0437\u043D\u0435\u0441 5"
+    LvL: 0
+    HasBuy: 0
+    IncomeDelay: 30
+    BaseCost: 5000
+    BaseIncome: 5000
+    FistUpgrade:
+      Cost: 100000
+      IncomeMultiplier: 200
+    SecondUpgrade:
+      Cost: 500000
+      IncomeMultiplier: 400
