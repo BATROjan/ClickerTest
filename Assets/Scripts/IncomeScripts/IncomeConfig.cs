@@ -7,7 +7,11 @@ namespace DefaultNamespace.IncomeScripts
     [CreateAssetMenu(fileName = "IncomeConfig", menuName = "Configs/IncomeConfig")]
     public class IncomeConfig : ScriptableObject
     {
+        public GameObject Prefab => prefab;
+        public BuisnessModel[] BuisnessModels => buisnessModels;
+        
         [SerializeField] private BuisnessModel[] buisnessModels;
+        [SerializeField] private GameObject prefab;
 
         public float CalculateIncome(BuisnessModel buisnessModel)
         {

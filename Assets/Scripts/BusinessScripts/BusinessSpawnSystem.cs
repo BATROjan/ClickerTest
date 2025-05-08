@@ -1,24 +1,50 @@
-﻿using Leopotam.Ecs;
+﻿using System;
+using DefaultNamespace.IncomeScripts;
+using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace DefaultNamespace.BusinessScripts
 {
-    public class BusinessSpawnSystem: IEcsRunSystem
+    public class BusinessSpawnSystem: IEcsInitSystem
     {
-        public readonly EcsWorld World = null;
-        private readonly EcsFilter<BusinessSpawnComponent> _spawnFilter = null;
-        public void Run()
+        private readonly EcsWorld world = null;
+        private readonly RunTimeData runTimeData = null;
+        private readonly IncomeConfig incomeConfig = null;
+     
+        public void Init()
         {
-            foreach (var i in _spawnFilter)
+            ref var prefab = ref runTimeData.prefab;
+            ref var parent = ref runTimeData.ParentTransform;
+            prefab = new GameObject();
+            
+            for (int i = 0; i < 5; i++)
             {
-                ref var spawnComponent = ref _spawnFilter.Get1(i);
-                
-                // Спавн объекта
-                GameObject spawnedObject = Object.Instantiate(spawnComponent.Prefab, spawnComponent.ParentTransform);
+                var prefObject = incomeConfig.Prefab;
 
-                //Удаляем компонент после спавна. Это гарантирует что объект спавнится только 1 раз.
-                _spawnFilter.GetEntity(i).Del<BusinessSpawnComponent>();
+                var gameObject = Object.Instantiate(prefObject, parent);
+                prefab = gameObject;
+                
+                EcsEntity entity = world.NewEntity();
+                //var bsComp=  entity.Get<BusinessComponent>();
+                entity.Get<GameObjectComponent>() = new GameObjectComponent()
+                {
+                    GameObject = gameObject
+                };
+
+                //bsComp.Name
+                    var bsComp = gameObject.GetComponent<BusinessComponent>();
+                    bsComp.Name.text = incomeConfig.BuisnessModels[i].Name;
+                    bsComp.LVLText.text = $"LvL \n {incomeConfig.BuisnessModels[i].LvL}";
+                    bsComp.IncomText.text =$"Доход \n {incomeConfig.BuisnessModels[i].BaseIncome}"; 
+                    //bsComp.Name.text = incomeConfig.BuisnessModels[i].Name;
             }
         }
+    }
+    public struct GameObjectComponent
+    {
+        public GameObject GameObject;
+        public Text Name;
     }
 }

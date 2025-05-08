@@ -73,3 +73,4 @@ MonoBehaviour:
     SecondUpgrade:
       Cost: 500000
       IncomeMultiplier: 400
+  prefab: {fileID: 7972611406078524958, guid: 559350be74f9350499b4680adde030fe, type: 3}

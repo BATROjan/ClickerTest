@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace.BusinessScripts;
+using DefaultNamespace.IncomeScripts;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -7,24 +8,32 @@ namespace DefaultNamespace
 {
     public class GameStartup : MonoBehaviour
     {
-        private EcsWorld _world;
-        private EcsSystems _systems;
-
         public GameObject prefab;
         public Transform ParTransform;
+        
+        [SerializeField] private IncomeConfig incomeConfig;
+        
+        private EcsWorld _world;
+        private EcsSystems _systems;
+        private RunTimeData _runTimeData;
         void Start()
         {
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
-
+            _runTimeData = new RunTimeData();
+            _runTimeData.ParentTransform = ParTransform;
+            
             AddInjections();
             AddOneFrames();
             AddSystems();
 
+            _systems
+                .Inject(incomeConfig)
+                .Inject(_runTimeData);
+
             _systems.ConvertScene();
-        
+
             _systems.Init();
-            CreatSpawn(prefab, ParTransform);
         }
 
         private void AddSystems()
@@ -41,20 +50,10 @@ namespace DefaultNamespace
         {
             
         }
+
         void Update()
         {
             _systems.Run();
-        }
-
-        private void CreatSpawn(GameObject prefab, Transform transform)
-        {
-           var entity = _world.NewEntity();
-         
-            entity.Get<BusinessSpawnComponent>() = new BusinessSpawnComponent
-            {
-                Prefab = prefab,
-                ParentTransform = transform
-            };
         }
 
         private void OnDestroy()
